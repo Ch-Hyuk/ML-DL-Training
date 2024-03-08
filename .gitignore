@@ -1,2 +1,10 @@
+#test_file
 test/
+
+#dataset
+DataSet/
+dataset/
 kaggle_data/
+
+# venv
+OpenCV_venv/
