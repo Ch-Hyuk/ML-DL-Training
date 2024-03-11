@@ -8,3 +8,7 @@ kaggle_data/
 
 # venv
 OpenCV_venv/
+
+
+#dat file
+.dat
