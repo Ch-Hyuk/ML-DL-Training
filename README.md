@@ -1,15 +1,17 @@
-## Repository for AI_study
+### Repository for AI_study
 
-- Competition
-- Classification
-- NLP
-- Recommendation System
-- Paper_Review
+## Base_Learning
+- Records of various ML and DL algorithm practices  
 
-<details>
-<summary>Projects</summary>
+## Competition
+- Records of various competition practices  
 
-<!-- summary 아래 한칸 공백 두어야함 -->
-## 접은 제목
-접은 내용
-</details>
+## NLP
+- Records of various NLP practices  
+
+## Recommendation System
+- Records of various RS practices  
+
+## Vision
+- Records of various Vision practices  
+
