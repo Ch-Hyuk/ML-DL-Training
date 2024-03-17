@@ -1,17 +1,17 @@
-### Repository for AI_study
+## Repository for AI_study
 
-## Base_Learning
+### Base_Learning
 - Records of various ML and DL algorithm practices  
 
-## Competition
+### Competition
 - Records of various competition practices  
 
-## NLP
+### NLP
 - Records of various NLP practices  
 
-## Recommendation System
+### Recommendation System
 - Records of various RS practices  
 
-## Vision
+### Vision
 - Records of various Vision practices  
 
