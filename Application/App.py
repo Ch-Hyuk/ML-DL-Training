@@ -51,7 +51,7 @@ class MyApp(QMainWindow):
     #window 기본 setting
     def initUI(self):
         self.setWindowTitle('My Application')
-        self.setWindowIcon(QIcon("C:/workspace/ML&DL/Application/test.png"))
+        self.setWindowIcon(QIcon("C:/workspace/ML&DL/Application/img/test.png"))
         self.setGeometry(300, 300, 1000, 500)
 
         self.statusBar().showMessage('This is Statusbar')
@@ -76,7 +76,7 @@ class MyApp(QMainWindow):
 
     #menu_bar
     def menu_bar(self):
-        exitAction = QAction(QIcon("C:/workspace/ML&DL/Application/test2.png"), 'Exit', self)
+        exitAction = QAction(QIcon("C:/workspace/ML&DL/Application/img/test2.png"), 'Exit', self)
         exitAction.setShortcut('Ctrl+Q')
         exitAction.setStatusTip('Exit application')
         exitAction.triggered.connect(qApp.quit)
