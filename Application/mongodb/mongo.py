@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import json
 
 # MongoDB 서버에 연결
 client = MongoClient("mongodb+srv://chanhyuk0104:interx%40seoul01!@interx-test-cluster-001.otujyun.mongodb.net/")

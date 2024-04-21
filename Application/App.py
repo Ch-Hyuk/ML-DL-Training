@@ -2,9 +2,9 @@ import sys
 import os
 
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMainWindow, QAction, qApp, QDesktopWidget
-from PyQt5.QtWidgets import QVBoxLayout, QFileDialog, QLabel
+from PyQt5.QtWidgets import QVBoxLayout, QFileDialog, QLabel, QInputDialog
 from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import QCoreApplication
+from PyQt5.QtCore import QCoreApplication, Qt
 from PyQt5 import uic
 
 
@@ -20,6 +20,7 @@ class MyApp(QMainWindow):
     def __init__(self):
         super().__init__()
         self.Quit_button()
+        self.text_submit_button()
         self.menu_bar()
         self.initUI()
 
@@ -31,6 +32,7 @@ class MyApp(QMainWindow):
 
         self.statusBar().showMessage('This is Statusbar')
         self.center()
+        
         self.show()
 
     #center window
@@ -48,6 +50,25 @@ class MyApp(QMainWindow):
         btn.move(50,50)
         btn.resize(btn.sizeHint())
         btn.clicked.connect(QCoreApplication.instance().quit)
+
+    #button method(text)
+    def text_submit_button(self):
+        btn = QPushButton('Submit', self)
+        btn.setToolTip('This is a <b>SubmitButton</b> widget')
+        btn.move(200,50)
+        btn.resize(btn.sizeHint())
+        btn.clicked.connect(self.text_dialog)
+
+
+    def text_dialog(self):
+        label = QLabel(self)
+        label.setStyleSheet('background-color : green')
+        label.setGeometry(10, 10, 200, 30)
+
+        text, ok = QInputDialog.getText(self, 'Input Dialog', 'Text Input')
+        if ok:
+            label.setText(text)
+
 
     def open_json(self):
         options = QFileDialog.Options()
