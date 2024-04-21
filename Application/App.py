@@ -69,11 +69,14 @@ class MyApp(QMainWindow):
 
     #menu_bar
     def menu_bar(self):
+
+        #exit Action data
         exitAction = QAction(QIcon("C:/workspace/ML&DL/Application/img/test2.png"), 'Exit', self)
         exitAction.setShortcut('Ctrl+Q')
         exitAction.setStatusTip('Exit application')
         exitAction.triggered.connect(qApp.quit)
 
+        #file open Action data
         fileOpen = QAction('test', self)
         fileOpen.triggered.connect(self.open_json)
 
@@ -87,6 +90,7 @@ class MyApp(QMainWindow):
 
         edit_menu = menuBar.addMenu('&Edit')
         edit_menu.addAction(exitAction)
+
 
 
 if __name__ == '__main__':
