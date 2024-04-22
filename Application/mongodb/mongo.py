@@ -1,16 +1,18 @@
 from pymongo import MongoClient
 import json
+import os
 
 # MongoDB 서버에 연결
-client = MongoClient("mongodb+srv://chanhyuk0104:interx%40seoul01!@interx-test-cluster-001.otujyun.mongodb.net/")
+client = MongoClient("")
 
-
+print("Current Working Directory: ", os.getcwd())
 print(client)
+
 # 데이터베이스 선택
-db = client['test_DB']
+db = client['']
 
 # 컬렉션 선택
-collection = db['test_collections']
+collection = db['']
 
 # 데이터 삽입
 post = {"name": "ch_hyuk", "text": "Mongo test start!", "tags": ["mongodb", "python", "pymongo"]}
