@@ -15,18 +15,17 @@ from pymongo import MongoClient
 #from_class = uic.loadUiType("ui1.ui")[0]
 
 
-#DB Tree view Class
-class MongoTreeView(QWidget):
+#Database Tree viewer
+class DBTreeView(QWidget):
     def __init__(self):
         super().__init__()
         self.initUI()
 
     def initUI(self):
-        self.setWindowTitle('MongoDB Data Viewer')
-        self.setGeometry(300, 300, 600, 400)
+        self.setGeometry(200, 200, 300, 200)
         layout = QVBoxLayout()
 
-        # 트리 뷰 설정
+        # tree view setting
         self.tree_view = QTreeView()
         self.model = QStandardItemModel()
         self.model.setHorizontalHeaderLabels(['Key', 'Value'])
@@ -35,22 +34,29 @@ class MongoTreeView(QWidget):
         layout.addWidget(self.tree_view)
         self.setLayout(layout)
 
-        # MongoDB에서 데이터 불러오기
+        # data load from Database
         self.load_data()
 
-    def load_data(self):
+    def load_secure_json(self):
         with open ("./file/secure_data.json", "r") as f:
             data = json.load(f)
 
         Cluster_name = data["Cluster_name"]
-        print(data["DATABASE"])
         DB_id = data["DATABASE"]["DB_id"]
         DB_ps = data["DATABASE"]["DB_password"]
         DB_name = data["DATABASE"]["DB_name"]
         DB_col_name = data["DATABASE"]["Collection_name"]
-        client = MongoClient("mongodb+srv://"+DB_id+":"+DB_ps+"@"+Cluster_name+".otujyun.mongodb.net/")
+
+        Address = "mongodb+srv://"+DB_id+":"+DB_ps+"@"+Cluster_name+".otujyun.mongodb.net/"
+
+        return Address, DB_name, DB_col_name
+    
+
+    def load_data(self):
+        Address, DB_name, Col_name = self.load_secure_json()
+        client = MongoClient(Address)
         db = client[DB_name]
-        collection = db[DB_col_name]
+        collection = db[Col_name]
 
         # 컬렉션의 모든 문서를 불러옴
         documents = collection.find()
@@ -84,7 +90,7 @@ class MyApp(QMainWindow):
         self.statusBar().showMessage('This is Statusbar')
 
 
-        self.mongoTreeView = MongoTreeView()
+        self.mongoTreeView = DBTreeView()
         self.setCentralWidget(self.mongoTreeView)
         self.Quit_button()
         self.text_submit_button()
