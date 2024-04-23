@@ -4,7 +4,7 @@ import sys
 import os
 
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMainWindow, QAction, qApp, QDesktopWidget
-from PyQt5.QtWidgets import QVBoxLayout, QFileDialog, QLabel, QInputDialog, QTreeView
+from PyQt5.QtWidgets import QVBoxLayout, QFileDialog, QLabel, QInputDialog, QTreeView, QSplitter
 from PyQt5.QtGui import QIcon,QStandardItem, QStandardItemModel
 from PyQt5.QtCore import QCoreApplication, Qt
 from PyQt5 import uic
@@ -15,6 +15,18 @@ import json
 from pymongo import MongoClient
 
 #from_class = uic.loadUiType("ui1.ui")[0]
+
+
+class DetailsView(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.layout = QVBoxLayout(self)
+        self.details_label = QLabel("Select an item from the tree view")
+        self.layout.addWidget(self.details_label)
+
+    def update_details(self, text):
+        self.details_label.setText(text)
+
 
 
 #Database Tree viewer
@@ -97,13 +109,24 @@ class MyApp(QMainWindow):
         self.setWindowTitle('My Application')
         self.setWindowIcon(QIcon("./img/test.png"))
         self.setGeometry(300, 300, 1000, 500)
-        self.statusBar().showMessage('This is Statusbar')
+        #self.statusBar().showMessage('This is Statusbar')
 
-        self.mongoTreeView = DataViewSection()
-        self.setCentralWidget(self.mongoTreeView)
+        splitter = QSplitter(Qt.Horizontal, self)
+        self.setCentralWidget(splitter)
+
+        self.TreeView = DataViewSection()
+
+        self.model = QStandardItemModel()
+        self.TreeView.setModel(self.model)
+        self.model.setHorizontalHeaderLabels(['Tree Items'])
+
+        self.details_view = DetailsView()
+
+        splitter.addWidget(self.tree_view)
+        splitter.addWidget(self.details_view)
         
-        self.Quit_button()
-        self.text_submit_button()
+        #self.Quit_button()
+        #self.text_submit_button()
         self.menu_bar()
         self.center()   
         self.show()

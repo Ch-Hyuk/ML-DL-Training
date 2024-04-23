@@ -28,8 +28,8 @@ class DataViewSection(QWidget):
         # tree view setting
         self.tree_view = QTreeView()
         self.model = QStandardItemModel()
-        self.model.setHorizontalHeaderLabels(['Key', 'Value'])
         self.tree_view.setModel(self.model)
+        self.tree_view.header().hide()
 
         layout.addWidget(self.tree_view)
         self.setLayout(layout)
@@ -52,6 +52,20 @@ class DataViewSection(QWidget):
         return Address, DB_name, DB_col_name
     
 
+    def add_items(self, parent, key, value):
+        if isinstance(value, dict):  # 값이 딕셔너리인 경우, 중첩된 노드 처리
+            parent_node = QStandardItem(QIcon("./icon/free-icon-app-2305920.png"), str(key))
+            parent.appendRow(parent_node)
+            for subkey, subvalue in value.items():
+                self.add_items(parent_node, subkey, subvalue)
+        else:
+            # 기본 키-값 쌍을 처리
+            key_item = QStandardItem(QIcon("./icon/free-icon-app-2305920.png"), str(key))
+            value_item = QStandardItem(QIcon("./icon/test.png"), str(value))
+            key_item.setEditable(False)
+            value_item.setEditable(False)
+            parent.appendRow([key_item, value_item])
+
     def load_data(self):
         Address, DB_name, Col_name = self.load_secure_json()
         client = MongoClient(Address)
@@ -61,18 +75,18 @@ class DataViewSection(QWidget):
         # 컬렉션의 모든 문서를 불러옴
         documents = collection.find()
         for doc in documents:
-            parent = QStandardItem(QIcon("./img/test2.png"), str(doc['Collection_001']['Name']))
-            for key, value in doc.items():
-                if key == '_id':
-                    continue
-                key_item = QStandardItem(QIcon("./icon/free-icon-app-2305920.png"), str(key))
-                value_item = QStandardItem(QIcon("./icon/test.png"), str(value))
-                key_item.setEditable(False)
-                value_item.setEditable(False)
-                parent.appendRow([key_item, value_item])
-            self.model.appendRow(parent)
+            # 가정: 'Collection_001' 이 중첩된 문서 구조를 가지고 있다고 가정
+            print(doc)
+#################################################################################################수정중            
+            if 'Collection_001' in doc and isinstance(doc['Collection_001'], dict):
+                parent = QStandardItem(QIcon("./img/test2.png"), str(doc.keys()))
+                for key, value in doc['Collection_001'].items():
+                    if key == '_id':
+                        continue
+                    self.add_items(parent, key, value)
+                self.model.appendRow(parent)
 
-        self.tree_view.expandAll()  # 모든 노드 확장
+        self.tree_view.expandAll()
 
 
 #Application Class
@@ -91,6 +105,7 @@ class MyApp(QMainWindow):
 
         self.mongoTreeView = DataViewSection()
         self.setCentralWidget(self.mongoTreeView)
+
         self.Quit_button()
         self.text_submit_button()
         self.menu_bar()
