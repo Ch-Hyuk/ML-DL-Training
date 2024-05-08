@@ -39,17 +39,24 @@ class DataViewSection(QWidget):
 
     def load_secure_json(self):
         with open ("./file/secure_data.json", "r") as f:
-            data = json.load(f)
+            Data = json.load(f)
 
-        Cluster_name = data["Cluster_name"]
-        DB_id = data["DATABASE1"]["DB_id"]
-        DB_ps = data["DATABASE1"]["DB_password"]
-        DB_name = data["DATABASE1"]["DB_name"]
-        DB_col_name = data["DATABASE1"]["Collection_name"]
+        DATABASE = Data["Test_DATABASE"]
+        CLUSTER = Data["Cluster_name"]
 
-        Address = "mongodb+srv://"+DB_id+":"+DB_ps+"@"+Cluster_name+".otujyun.mongodb.net/"
+        DB_id = DATABASE["DB_id"]
+        DB_ps = DATABASE["DB_password"]
+        DB_name = DATABASE["DB_name"]
+        Test_Col_name = DATABASE["Test_collection"]
 
-        return Address, DB_name, DB_col_name
+        C_Repositoy = DATABASE["COL_Repository"]
+        C_Collections = DATABASE["COL_Collections"]
+        C_Item = DATABASE["COL_Item"]
+        C_Data = DATABASE["COL_Data"]
+
+        Address = "mongodb+srv://"+DB_id+":"+DB_ps+"@"+CLUSTER+".otujyun.mongodb.net/"
+
+        return Address, DB_name, [C_Repositoy,C_Collections,C_Item,C_Data]
     
 
     def add_items(self, parent, key, value):
@@ -70,11 +77,21 @@ class DataViewSection(QWidget):
         Address, DB_name, Col_name = self.load_secure_json()
         client = MongoClient(Address)
         db = client[DB_name]
-        collection = db[Col_name]
+
+        col_repo = db[Col_name[0]]
+        col_coll = db[Col_name[1]]
+        col_item = db[Col_name[2]]
+        col_data = db[Col_name[3]]
 
         # 컬렉션의 모든 문서를 불러옴
-        documents = collection.find()
-        for doc in documents:
+        repo_doc = col_repo.find()
+        coll_doc = col_coll.find()
+        item_doc = col_item.find()
+        data_doc = col_data.find()
+
+
+        #트리 형태로 메타데이터의 구조를 보여주는 부분
+        for doc in repo_doc:
             # 가정: 'Collection_001' 이 중첩된 문서 구조를 가지고 있다고 가정
             print(doc)
 #################################################################################################수정중            

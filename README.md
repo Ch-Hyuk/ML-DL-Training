@@ -15,3 +15,5 @@
 ### Vision
 - Records of various Vision practices  
 
+### Application
+- Practice applying ML, DL through various Python applications such as pyqt and tkinter

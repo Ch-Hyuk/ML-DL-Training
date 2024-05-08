@@ -1,11 +1,13 @@
 #test_file
 test/
-file/
+test_file/
 
 #dataset
 DataSet/
 dataset/
 kaggle_data/
+file/
+icon/
 
 # venv
 OpenCV_venv/
