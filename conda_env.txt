@@ -1,0 +1,39 @@
+## 가상환경 생성 및 설정
+
+cd 프로젝트 파일
+
+$python -m venv 가상환경이름
+
+$ cd 가상환경이름
+
+$ . Scripts/activate
+
+--> 가상환경 상태
+
+$ deactivate
+
+--> 가상환경 빠져나오기
+
+
+##conda 가상환경
+Anaconda promt를 열고 생성 -> vscode의 anaconda저장 장소와 윈도우 상의 conda 저장 장소가 달라
+cmd 창으로 설치시 윈도우 상의 경로로 저장, vs로 powershell을 열고 사용시 vs로 설정한 저장 장소로 저장
+
+bash shell에서 conda 명령어가 실행되지 않을때 - > source C:/ProgramData/Anaconda3/Scripts/activate를 통해 직접 활성화
+
+
+- 가상환경 생성
+> conda create -n {이름} python = version
+
+- 가상환경 제거
+> conda env remove -n {이름]
+
+- 가상환경 목록 확인
+> conda env list
+> conda info --envs
+
+-가상환경 활성화
+> conda activate {가상환경이름}
+
+- 가상환경 비활성화
+> conda deactivate
