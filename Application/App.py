@@ -38,7 +38,7 @@ class DataViewSection(QWidget):
         self.load_data()
 
     def load_secure_json(self):
-        with open ("./file/secure_data.json", "r") as f:
+        with open ("./Application/file/secure_data.json", "r") as f:
             Data = json.load(f)
 
         DATABASE = Data["Test_DATABASE"]
