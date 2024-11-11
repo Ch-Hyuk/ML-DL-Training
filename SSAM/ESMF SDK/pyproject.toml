@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "esmf sdk"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+esmf-aspect-meta-model-python = { git = "https://github.com/eclipse-esmf/esmf-sdk-py-aspect-model-loader.git", tag = "v2.1.5" }
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,6 +1,8 @@
 #test_file
 test/
 test_file/
+sheet_file/
+word_data_file
 
 #dataset
 DataSet/
@@ -15,3 +17,8 @@ OpenCV_venv/
 
 #dat file
 .dat
+
+
+Data_preprocess/workspace/*.txt
+Data_preprocess/workspace/*.xlsx
+Data_preprocess/workspace/*.csv

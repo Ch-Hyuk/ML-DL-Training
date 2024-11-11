@@ -1,0 +1,70 @@
+{
+    "tag": "{https://admin-shell.io/aas/3/0}environment",
+    "attrib": {},
+    "text": "",
+    "children": [
+        {
+            "tag": "{https://admin-shell.io/aas/3/0}assetAdministrationShells",
+            "attrib": {},
+            "text": "",
+            "children": [
+                {
+                    "tag": "{https://admin-shell.io/aas/3/0}assetAdministrationShell",
+                    "attrib": {},
+                    "text": "",
+                    "children": [
+                        {
+                            "tag": "{https://admin-shell.io/aas/3/0}idShort",
+                            "attrib": {},
+                            "text": "Injecion_Molding_Machine",
+                            "children": []
+                        },
+                        {
+                            "tag": "{https://admin-shell.io/aas/3/0}displayName",
+                            "attrib": {},
+                            "text": "",
+                            "children": []
+                        },
+                        {
+                            "tag": "{https://admin-shell.io/aas/3/0}id",
+                            "attrib": {},
+                            "text": "InjectionMoldingMachine",
+                            "children": []
+                        },
+                        {
+                            "tag": "{https://admin-shell.io/aas/3/0}assetInformation",
+                            "attrib": {},
+                            "text": "",
+                            "children": [
+                                {
+                                    "tag": "{https://admin-shell.io/aas/3/0}assetKind",
+                                    "attrib": {},
+                                    "text": "Instance",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "tag": "{https://admin-shell.io/aas/3/0}submodels",
+                            "attrib": {},
+                            "text": "",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "tag": "{https://admin-shell.io/aas/3/0}submodels",
+            "attrib": {},
+            "text": "",
+            "children": []
+        },
+        {
+            "tag": "{https://admin-shell.io/aas/3/0}conceptDescriptions",
+            "attrib": {},
+            "text": "",
+            "children": []
+        }
+    ]
+}
